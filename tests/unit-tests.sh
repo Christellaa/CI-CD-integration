@@ -13,8 +13,8 @@ sleep 5
 
 errors=0
 
-./success-test.sh || errors=$((errors+1))
-./failure-test.sh || errors=$((errors+1))
+./tests/success-test.sh || errors=$((errors+1))
+./tests/failure-test.sh || errors=$((errors+1))
 
 docker stop $CONTAINER
 docker rm $CONTAINER
