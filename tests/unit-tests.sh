@@ -7,7 +7,7 @@ IMAGE="ci-cd-test-img"
 CONTAINER="ci-cd-test-container"
 
 docker build -t $IMAGE .
-docker run -d --name $CONTAINER $IMAGE
+docker run -d --name $CONTAINER -p 8080:8080 $IMAGE
 
 sleep 5
 
