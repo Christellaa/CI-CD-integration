@@ -1,0 +1,46 @@
+name: CI Mini API
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        sparce-checkout: |
+          Dockerfile
+          tests
+          srcs
+
+    - name: Run unit tests
+      run: |
+        chmod +x tests/unit-tests.sh
+        ./tests/unit-tests.sh
+
+  deploy:
+    needs: unit-tests
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+      with:
+        sparce-checkout: |
+          Dockerfile
+          srcs
+          deploy.sh
+
+    - name: Build and push Docker image
+      run: |
+        chmod +x deploy.sh
+        ./deploy.sh
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
