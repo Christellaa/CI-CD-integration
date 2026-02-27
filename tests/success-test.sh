@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:8080/)
+HTTP_STATUS=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:8081/)
 
 if [ "$HTTP_STATUS" -eq 200 ]; then
     echo "Unit test passed: Received HTTP 200"
