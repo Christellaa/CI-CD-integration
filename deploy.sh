@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=v2
+VERSION=v1
 
 docker build -t $DOCKER_USERNAME/ci-cd-integration-img:$VERSION .
 
