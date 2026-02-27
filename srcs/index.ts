@@ -10,7 +10,7 @@ const routes = {
 }
 
 Bun.serve({
-    port: 8080,
+    port: 8081,
     routes,
     fetch(req) {
         const url = new URL(req.url);
