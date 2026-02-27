@@ -2,8 +2,6 @@
 set -e
 
 VERSION=v2
-git tag -a $VERSION -m "Release version $VERSION"
-git push origin $VERSION
 
 docker build -t $DOCKER_USERNAME/ci-cd-integration-img:$VERSION .
 
